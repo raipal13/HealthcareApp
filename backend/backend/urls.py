@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_view
 from user import views as user_view
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +27,4 @@ urlpatterns = [
     path('login/', auth_view.LoginView.as_view(template_name='user/login.html'), name='login'),
     path('', include('base.urls')),
     
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
